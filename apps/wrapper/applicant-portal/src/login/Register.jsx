@@ -2,7 +2,7 @@ import React from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Button } from "../components";
+import { Button, Label } from "../components";
 
 import { FaAngleRight } from "react-icons/fa";
 
@@ -108,9 +108,7 @@ export default function SelfRegistration() {
                 <h1 className="text-xl font-semibold">Basic Details</h1>
                 <div className="mt-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-3">
-                    <label className="block text-sm font-medium leading-6 text-gray-900">
-                      First name
-                    </label>
+                    <Label htmlFor="firstname" text="First name" required />
                     <div className="mt-2">
                       <input
                         type="text"
@@ -142,9 +140,7 @@ export default function SelfRegistration() {
                     </div>
                   </div>
                   <div className="sm:col-span-3">
-                    <label className="block text-sm font-medium leading-6 text-gray-900">
-                      Last name
-                    </label>
+                    <Label htmlFor="lastname" text="Last name" required />
                     <div className="mt-2">
                       <input
                         type="text"
@@ -179,9 +175,7 @@ export default function SelfRegistration() {
 
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-3">
-                    <label className="block text-sm font-medium leading-6 text-gray-900">
-                      Email Id
-                    </label>
+                    <Label htmlFor="email" text="Email Id" required />
                     <div className="mt-2">
                       <input
                         type="email"
@@ -208,12 +202,7 @@ export default function SelfRegistration() {
                     </div>
                   </div>
                   <div className="sm:col-span-3">
-                    <label
-                      htmlFor="phonenumber"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Phone number
-                    </label>
+                    <Label htmlFor="phonenumber" text="Phone number" required />    
                     <div className="mt-2">
                       <input
                         type="tel"
@@ -248,12 +237,7 @@ export default function SelfRegistration() {
 
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-3">
-                    <label
-                      htmlFor="applicantname"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Applicant name
-                    </label>
+                    <Label htmlFor="applicantname" text="Applicant name" required />    
                     <div className="mt-2">
                       <input
                         type="text"
@@ -285,12 +269,7 @@ export default function SelfRegistration() {
                     </div>
                   </div>
                   <div className="sm:col-span-3 ">
-                    <label
-                      htmlFor="applicanttype"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Applicant type
-                    </label>
+                    <Label htmlFor="applicanttype" text="Applicant type" required />
                     <div className="mt-2">
                       <select
                         className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -314,12 +293,7 @@ export default function SelfRegistration() {
 
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-3 ">
-                    <label
-                      htmlFor="coursetype"
-                      className="block text-sm font-medium leading-6 text-gray-900"
-                    >
-                      Course name
-                    </label>
+                    <Label htmlFor="coursetype" text="Course name" required />
                     <div className="mt-2">
                       <select
                         className="block w-full rounded-md border-0 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

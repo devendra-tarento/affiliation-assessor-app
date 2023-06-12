@@ -6,7 +6,7 @@ const BASE_URL =
   process.env.REACT_APP_WEB_PORTAL_USER_SERVICE_URL ||
   "https://api.upsmfac.org/";
 const REGISTRATION_BASE_URL =
-  process.env.REACT_APP_FUSION_AUTH_URL || "http://35.207.216.26:8081/api/";
+  process.env.REACT_APP_FUSION_AUTH_URL || "https://api.upsmfac.org/api/";
 const AUTH_KEY =
   process.env.REACT_APP_FUSION_AUTH_API_KEY || "testkeytestkeytestkey";
 
