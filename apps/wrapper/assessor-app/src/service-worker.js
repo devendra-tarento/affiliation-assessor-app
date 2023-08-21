@@ -1,3 +1,55 @@
+
+//  const inspectionsCache = 'inspections';
+//  const formStatusCache = "formstatus";
+//  const coursesCache= "courses";
+//  const assessorCache= "assessor";
+
+// self.addEventListener('fetch', (event) => {
+//   console.log(event)
+//   ///
+//   if (event.request.method ==='POST' && event.request.url.includes('Inspections' ))  {
+//     event.respondWith(handleNonGetRequest(event.request, inspectionsCache));
+//   }
+
+//   if (event.request.method ==='POST' && event.request.url.includes('getFormStatus' ))  {
+//     event.respondWith(handleNonGetRequest(event.request, formStatusCache));
+//   }
+
+//   if (event.request.method ==='POST' && event.request.url.includes('Course' ))  {
+//     event.respondWith(handleNonGetRequest(event.request, coursesCache));
+//   }
+
+//   if (event.request.method ==='POST' && (event.request.url.includes('getAssessor') || event.request.url.includes('getValidation')))  {
+//     event.respondWith(handleNonGetRequest(event.request, assessorCache));
+//   }
+
+//   if (event.request.method ==='POST' && event.request.url.includes('prefillXML'))  {
+//     event.respondWith(handleNonGetRequest(event.request, "prefill"));
+//   }
+
+//   // if (event.request.method ==='POST' && event.request.url.includes('graphql'))  {
+//   //   event.respondWith(handleGraphQlRequest(event.request));
+//   // }
+
+//   if (event.request.method === 'POST' && event.request.url.includes('form-endpoint')) {
+//     // Cache the form data with a unique identifier
+//     event.respondWith(handleFormSubmission(event.request));
+//   }
+// }); 
+
+
+
+
+
+
+
+
+
+
+
+// -----------------
+
+
 /* eslint-disable no-restricted-globals */
 
 // This service worker can be customized!
@@ -85,52 +137,30 @@ return data */
 }
 
 
- const inspectionsCache = 'inspections';
- const formStatusCache = "formstatus";
- const coursesCache= "courses";
- const assessorCache= "assessor";
-
 self.addEventListener('fetch', (event) => {
   console.log(event)
   ///
-  if (event.request.method ==='POST' && event.request.url.includes('Inspections' ))  {
-    event.respondWith(handleNonGetRequest(event.request, inspectionsCache));
-  }
-
-  if (event.request.method ==='POST' && event.request.url.includes('getFormStatus' ))  {
-    event.respondWith(handleNonGetRequest(event.request, formStatusCache));
-  }
-
-  if (event.request.method ==='POST' && event.request.url.includes('Course' ))  {
-    event.respondWith(handleNonGetRequest(event.request, coursesCache));
-  }
-
-  if (event.request.method ==='POST' && (event.request.url.includes('getAssessor') || event.request.url.includes('getValidation')))  {
-    event.respondWith(handleNonGetRequest(event.request, assessorCache));
-  }
-
-  if (event.request.method ==='POST' && event.request.url.includes('prefillXML'))  {
-    event.respondWith(handleNonGetRequest(event.request, "prefill"));
-  }
-
-  // if (event.request.method ==='POST' && event.request.url.includes('graphql'))  {
-  //   event.respondWith(handleGraphQlRequest(event.request));
-  // }
-
-  if (event.request.method === 'POST' && event.request.url.includes('form-endpoint')) {
-    // Cache the form data with a unique identifier
-    event.respondWith(handleFormSubmission(event.request));
-  }
+ 
+  if (event.request.method ==='POST') {
+    event.respondWith(handleNonGetRequests(event.request, event.request.url));
+  } 
 }); 
 
+ async function handleNonGetRequests(request, url) {
+  console.log(url)
+  let cacheName="other";
 
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-form-data') {
-    event.waitUntil(syncFormData());
+  if( url.includes('Inspections')){
+    console.log('InspectionsInspectionsInspections')
+    cacheName = 'inspections';
+  } else if (url.includes('Course')){
+    console.log('coursescoursescourses')
+    cacheName = 'courses';
+  } else if(url.includes('Assessor')){
+    console.log('AssessorAssessorAssessor')
+    cacheName = 'assessor';
   }
-});
 
- async function handleNonGetRequest(request, cacheName) {
   // Use a cache specifically for non-GET requests
   const cache = await caches.open(cacheName);
   const cacheKey = generateCacheKey(request);
@@ -161,6 +191,13 @@ function generateCacheKey(request) {
 }); */
 
 // Any other custom service worker logic can go here.
+
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-form-data') {
+    event.waitUntil(syncFormData());
+  }
+});
+
 
 async function handleFormSubmission(request) {
   if (!navigator.onLine) {
